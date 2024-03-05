@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+
+<head>
+
+    <% include ./partial/head %>
+</head>
+
+<body>
+
+    <%include ./partial/theme-changer %>
+
+        <%include ./partial/header %>
+
+
+            <main>
+                <br /><br />
+                <h5 class="mt-5 text-center">
+                    <%= movies.title %>
+                </h5>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 p-5">
+                        <img src="<%= movies.poster %>" class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 p-5">
+                        <h5>Cinema: <span class="text-primary">
+                                <%= movies.cinemaId.name %>
+                            </span></h5>
+                        <h5>Category: <span class="text-primary">
+                                <%= movies.category %>
+                            </span></h5>
+                        <h5>Cast: <span class="text-primary">
+                                <%= movies.cast %>
+                            </span></h5>
+                        <h5>Director: <span class="text-primary">
+                                <%= movies.director %>
+                            </span></h5>
+                        <h5>StartDate: <span class="text-primary">
+                                <%= movies.startDate.toISOString().slice(0,10); %>
+                            </span></h5>
+                        <h5>EndDate: <span class="text-primary">
+                                <%= movies.endDate.toISOString().slice(0,10); %>
+                            </span></h5>
+                        <h5>ReleaseDate: <span class="text-primary">
+                                <%= movies.releaseDate.toISOString().slice(0,10);%>
+                            </span></h5>
+                        <h5>Duration: <span class="text-primary">
+                                <%= movies.duration %>
+                            </span></h5>
+                        <h5>Synopsis: <span class="text-primary">
+                                <%= movies.syn %>
+                            </span></h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe src="<%= movies.trailer %>" title="YouTube video" allowfullscreen></iframe>
+                        </div>
+                        <a href="/booking/<%= movies._id%>" class="btn btn-outline-primary"><% movies._id %>Book this movie</a>
+                    </div>
+                </div>
+                <h4 class="text-center mt-3">Show Time Table</h4>
+                <div class="row m-3">
+                    <% for(var i=0; i < timetable.length; i++){%>
+                        <h5 class="mt3">
+                            <%= timetable[i].date %>
+                        </h5>
+                        <div class="row">
+                            <% for(var j=0; j < timetable [i].time.length; j++){%>
+                                <div class="col-lg-2 col-md-3 col-sm-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-title">
+                                                No : <%= timetable[i].time[j].screenNo %>
+                                            </p>
+                                            <p class="card-text">Time: <%= timetable[i].time[j].time %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                        </div>
+                        <%}%>
+                </div>
+
+                <!-- FOOTER -->
+                <footer class="container">
+                    <p class="float-end"><a href="#">Back to top</a></p>
+                    <p>&copy; 2017–2023 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
+                    </p>
+                </footer>
+            </main>
+            <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
